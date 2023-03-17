@@ -1,0 +1,5 @@
+<div>
+  <input id="name" [(ngModel)]="user.userName" placeholder="name"><br>
+  <p>{{user.userName}}</p><br>
+  <button type="button" (click)="onByeBye()" [disabled]="check()">empty</button>
+</div>
