@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component'; // <-- NgM
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { BoldDirective } from './bold.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InMemoryDataService } from './in-memory-data.service';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    BoldDirective
   ],
   imports: [
     BrowserModule,
