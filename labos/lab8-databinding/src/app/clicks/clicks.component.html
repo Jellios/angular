@@ -1,0 +1,10 @@
+<button type="button" (click)="onClick()">Show me the secret</button>
+<p *ngIf="fase">
+ test
+</p>
+<ul>
+<!---<li *ngFor="let x of lijst" [ngStyle]="{backgroundColor: check? 'blue' : 'white'}">clicked at: {{x |date:"dd/MM/yy h:mm:ss"}}</li>
+-->
+<li *ngFor="let x of lijst; index as i;" [ngStyle]="i > 3 ? { backgroundColor: 'blue', color: 'white' } : { backgroundColor: 'white', color: 'black' }">clicked at: {{x | date:"dd/MM/yy h:mm:ss"}}</li>
+
+</ul>
