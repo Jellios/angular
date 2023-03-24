@@ -1,0 +1,21 @@
+body
+{
+    width: 100%;
+}
+.top
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.inner
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+img
+{
+    width: 10%;
+    height: 10%;
+}

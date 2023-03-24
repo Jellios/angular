@@ -9,6 +9,9 @@ import { ClicksComponent } from './clicks/clicks.component';
 import { BooksComponent } from './books/books.component';
 import { BookComponent } from './book/book.component';
 import { ParagraafComponent } from './paragraaf/paragraaf.component';
+import { SumaryPipe } from './sumary.pipe';
+import { BOOKS } from './mock-books';
+import { FinancePipe } from './finance.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { ParagraafComponent } from './paragraaf/paragraaf.component';
     ClicksComponent,
     BooksComponent,
     BookComponent,
-    ParagraafComponent
+    ParagraafComponent,
+    SumaryPipe,
+    FinancePipe
   ],
   imports: [
     BrowserModule,
