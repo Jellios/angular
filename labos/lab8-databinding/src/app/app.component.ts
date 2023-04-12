@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'lab8-databinding';
+  messages = [
+    "hallo",
+    "ik",
+    "ben",
+    "jo",
+    "en",
+    "ik",
+    "werk",
+    "in",
+    "de",
+    "knopjes",
+    "fabriek"
+  ];
+onNewMessage(message: string): void {
+  this.messages.push(message);
+}
 }

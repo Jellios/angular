@@ -1,0 +1,13 @@
+  <div class="container bg-light">
+    <div class="row">
+      <div *ngFor="let item of goalList" class="col-md-6 p-2">
+        <div class="card mb-4 bg-primary text-white">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.titel }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+            <p class="card-text">{{ item.time}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

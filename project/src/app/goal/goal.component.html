@@ -1,0 +1,19 @@
+<div class="container p-4 my-2 mx-2 bg-primary text-white">
+  <div class="row">
+    <div class="col-md-2">Title:</div>
+    <div class="col-md-6">{{GOAL.titel | titlecase}}</div>
+  </div>
+    <div class="row">
+      <div class="col-md-2">Description:</div>
+      <div class="col-md-8">{{GOAL.description}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Start date:</div>
+      <div class="col-md-8">{{GOAL.startDate | date:"dd/MM/yyy"}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Progress:</div>
+      <div class="col-md-8">{{days}} days, {{hours}} hours, {{minutes}} minutes and {{seconds}} seconds</div>
+    </div>
+</div>
+

@@ -12,6 +12,8 @@ import { ParagraafComponent } from './paragraaf/paragraaf.component';
 import { SumaryPipe } from './sumary.pipe';
 import { BOOKS } from './mock-books';
 import { FinancePipe } from './finance.pipe';
+import { CardComponent } from './card/card.component';
+import { NewMessageComponent } from './new-message/new-message.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { FinancePipe } from './finance.pipe';
     BookComponent,
     ParagraafComponent,
     SumaryPipe,
-    FinancePipe
+    FinancePipe,
+    CardComponent,
+    NewMessageComponent
   ],
   imports: [
     BrowserModule,
