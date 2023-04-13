@@ -37,4 +37,18 @@ export class GoalsComponent implements OnInit {
     this.goalList = this.goalService.getGoals();
     this.updateGoalTimes();
   }
+  onDeleteGoal(selectedGoal: Goal): void {
+    const index = this.getSelectedGoal(selectedGoal);
+    this.goalList.splice(index,1);
+
+  }
+  getSelectedGoal(selectedGoal: Goal): number {
+    const index = this.goalList.indexOf(selectedGoal);
+    return index;
+  }
+  onResetTime(selectedGoal: Goal): void {
+    const index = this.getSelectedGoal(selectedGoal);
+    this.goalList[index].startDate = new Date();
+  }
+
 }
