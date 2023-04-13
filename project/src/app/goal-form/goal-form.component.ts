@@ -23,7 +23,7 @@ export class GoalFormComponent {
   onSubmit() {
 
     this.goal.titel = this.title;
-    this.goal.startDate = this.startDate;
+    this.goal.startDate = new Date(this.startDate);
     this.goal.description = this.description;
     this.goalAdded.emit(this.goal);
     this.startDate = new Date();
