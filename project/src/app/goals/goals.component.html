@@ -3,14 +3,28 @@
       <div *ngFor="let item of goalList" class="col-md-6 p-2">
         <div class="card mb-4 bg-primary text-white" style="height: 220px;">
           <div class="card-header">
-            <button class="btn btn-primary btn-sm" style="float: right" (click)="onDeleteGoal(item)">X</button>
+           <button class="btn btn-secondary btn-sm" style="float: right" (click)="onDeleteGoal(item)">
+             Delete goal
+            </button> 
           </div>
           <div class="card-body">
             <h5 class="card-title">{{ item.titel }}</h5>
             <p class="card-text">{{ item.description }}</p>
-           <!-- <div class="card-text"><p>{{item.time}}</p><button class="btn btn-secondary btn-sm"  (click)="onResetTime(item)">Reset time</button></div> -->
-            <p class="card-text">{{item.time}}</p>
-            <button class="btn-secondary">Reset time</button>
+            <!-- <div class="card-text"><p>{{item.time}}</p><button class="btn btn-secondary btn-sm"  (click)="onResetTime(item)">Reset time</button></div> -->
+         
+         
+            <!-- ************************************************************************-->
+         
+         <!--   <div class="row">
+            <p class="col-md-8">{{item.time}}</p>
+            <div class="col-md-4 text-right">
+              <button class="btn-secondary">Reset time</button>
+            </div>
+           </div>
+          -->
+
+          <p class="card-text">{{item.time}} </p>
+          <button class="knop btn-secondary btn-sm text-white bg-secondary">Reset time</button>
           </div>
         </div>
       </div>
