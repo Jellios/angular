@@ -14,6 +14,7 @@ import { BOOKS } from './mock-books';
 import { FinancePipe } from './finance.pipe';
 import { CardComponent } from './card/card.component';
 import { NewMessageComponent } from './new-message/new-message.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NewMessageComponent } from './new-message/new-message.component';
     SumaryPipe,
     FinancePipe,
     CardComponent,
-    NewMessageComponent
+    NewMessageComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

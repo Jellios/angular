@@ -14,7 +14,25 @@ export class GoalServiceService {
     },
     {
       startDate: new Date("2023-03-22T09:00:00"),
-      titel: "lorem ipsum lorem ipsum lorem ipsum",
+      titel: "ddddddd ipsum lorem ipsum lorem ipsum",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra, lacus non tristique euismod, felis odio sodal",
+      time: ""
+    },
+    {
+      startDate: new Date("2023-03-22T09:00:00"),
+      titel: "aaaaa ipsum lorem ipsum lorem ipsum",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra, lacus non tristique euismod, felis odio sodal",
+      time: ""
+    },
+    {
+      startDate: new Date("2023-03-22T09:00:00"),
+      titel: "eeeee ipsum lorem ipsum lorem ipsum",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra, lacus non tristique euismod, felis odio sodal",
+      time: ""
+    },
+    {
+      startDate: new Date("2023-03-22T09:00:00"),
+      titel: "ccccccc ipsum lorem ipsum lorem ipsum",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra, lacus non tristique euismod, felis odio sodal",
       time: ""
     }
