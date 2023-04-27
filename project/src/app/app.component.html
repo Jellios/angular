@@ -1,8 +1,6 @@
-<ul class="navbar bg-dark text-primary sticky-lg-top">
-  <li class="nav-item"><a href="/dashboard" class="nav-link">Dashboard</a></li>
+<app-navigation></app-navigation>
+<router-outlet>
+</router-outlet>
 
-</ul>
-<app-goals>
-</app-goals>
-<app-goal-form (goalAdded)="goalService.addGoal($event)"></app-goal-form>
+
 
