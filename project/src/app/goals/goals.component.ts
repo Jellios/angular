@@ -7,49 +7,15 @@ import { GoalServiceService } from '../goal-service.service';
   templateUrl: './goals.component.html',
   styleUrls: ['./goals.component.css']
 })
-export class GoalsComponent implements OnInit {
+export class GoalsComponent implements OnInit
+{
 
-  goalList: Goal[] = [];
+
+  goals: Goal[] = [];
 
   constructor(private goalService: GoalServiceService) { }
 
-  ngOnInit(): void {
-    this.goalList = this.goalService.getGoals();
-    setInterval(() => {
-      this.updateGoalTimes();
-    }, 1000);
+  ngOnInit() {
+    this.goals = this.goalService.getGoals();
   }
-
-  updateGoalTimes(): void {
-    for (let i = 0; i < this.goalList.length; i++) {
-      let startDate = this.goalList[i].startDate;
-      let now = new Date();
-      let diff = Math.abs(now.getTime() - startDate.getTime()) / 1000; // difference in seconds
-      let days = Math.floor(diff / 86400);
-      let hours = Math.floor(diff % 86400 / 3600);
-      let minutes = Math.floor(diff % 3600 / 60);
-      let seconds = Math.floor(diff % 60);
-      this.goalList[i].time = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
-
-    }
-  }
-  onGoalAdded(newGoal: Goal): void {
-    this.goalService.addGoal(newGoal);
-    this.goalList = this.goalService.getGoals();
-    this.updateGoalTimes();
-  }
-  onDeleteGoal(selectedGoal: Goal): void {
-    const index = this.getSelectedGoal(selectedGoal);
-    this.goalList.splice(index,1);
-
-  }
-  getSelectedGoal(selectedGoal: Goal): number {
-    const index = this.goalList.indexOf(selectedGoal);
-    return index;
-  }
-  onResetTime(selectedGoal: Goal): void {
-    const index = this.getSelectedGoal(selectedGoal);
-    this.goalList[index].startDate = new Date();
-  }
-
 }

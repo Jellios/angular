@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Goal } from '../goal';
 import { eventListeners } from '@popperjs/core';
+import { GoalServiceService } from '../goal-service.service';
 
 @Component({
   selector: 'app-goal-form',
@@ -18,14 +19,15 @@ export class GoalFormComponent {
     description: '',
     time: ""
   };
-  @Output() goalAdded = new EventEmitter<Goal>();
+
+constructor(private goalService: GoalServiceService) {}
 
   onSubmit() {
 
     this.goal.titel = this.title;
     this.goal.startDate = new Date(this.startDate);
     this.goal.description = this.description;
-    this.goalAdded.emit(this.goal);
+    this.goalService.addGoal(this.goal);
     this.startDate = new Date();
     this.title = '';
     this.description = '';

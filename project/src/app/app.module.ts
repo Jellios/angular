@@ -10,6 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,11 +24,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     BrowserModule,
     FormsModule,
+    NgbDropdownModule,
     FontAwesomeModule,
     RouterModule.forRoot([
       {path: 'dashboard',component: GoalsComponent},
       {path: 'new-goal',component: GoalFormComponent},
     ]),
+
 
   ],
   providers: [],

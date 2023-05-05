@@ -1,19 +1,22 @@
-<div class="container p-4 my-2 mx-2 bg-primary text-white">
-  <div class="row">
-    <div class="col-md-2">Title:</div>
-    <div class="col-md-6">{{GOAL.titel | titlecase}}</div>
+<div class="card mb-4 bg-primary text-white" style="height: 220px;">
+  <div class="card-header border-0">
+    <div ngbDropdown class="d-inline-block" style="float: right">
+      <button class="btn btn-secondary btn-sm" id="dropdownMenuButton" ngbDropdownToggle>
+        <i class="fas fa-cog"></i>
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+        <button ngbDropdownItem (click)="onDeleteGoal()">Delete goal</button>
+        <button ngbDropdownItem>Edit goal</button>
+        <button ngbDropdownItem>Pause goal</button>
+      </div>
+    </div>
   </div>
-    <div class="row">
-      <div class="col-md-2">Description:</div>
-      <div class="col-md-8">{{GOAL.description}}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ goal.titel }}</h5>
+    <div class="card-text">
+      <p>{{ goal.description | slice:0:50 }}{{goal.description.length > 50 ? '...': ''}}</p>
     </div>
-    <div class="row">
-      <div class="col-md-2">Start date:</div>
-      <div class="col-md-8">{{GOAL.startDate | date:"dd/MM/yyy"}}</div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">Progress:</div>
-      <div class="col-md-8">{{days}} days, {{hours}} hours, {{minutes}} minutes and {{seconds}} seconds</div>
-    </div>
+    <p class="card-text">{{this.progress}} </p>
+    <button class="knop btn-secondary btn-sm text-white bg-secondary" (click)="resetTime()">Reset time</button>
+  </div>
 </div>
-

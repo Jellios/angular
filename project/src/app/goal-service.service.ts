@@ -43,13 +43,22 @@ export class GoalServiceService {
   }
   addGoal(goal: Goal) {
     this.goalList.push(goal);
-  }
-  editGoal(i: number, goal: Goal)
+  } //van INDEXEN NAAR GOAL OBJECTEN AAN HET GAAN
+  editGoal(x: Goal)
   {
-    this.goalList[i] = goal;
+    let i = 0;
+    i = this.getIndex(x);
+    this.goalList[i] = x;
   }
-  deleteGoal(i:number)
+  deleteGoal(x: Goal)
   {
+    //this.goalList.splice(i,1);
+    let i = 0;
+    i = this.getIndex(x);
     this.goalList.splice(i,1);
+  }
+  getIndex(x: Goal):number
+  {
+    return this.goalList.indexOf(x);
   }
 }
