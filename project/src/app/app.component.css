@@ -1,0 +1,10 @@
+.main
+{
+  height: 100%;
+  margin-bottom: -2vh;
+}
+html, body{
+margin: 0px;
+padding: 0px;
+min-height: 100vh;
+}

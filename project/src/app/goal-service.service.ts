@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Goal } from './goal';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
+import { GoalComponent } from './goal/goal.component';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class GoalServiceService {
-  public goalList: Goal[] = [
+  public goalList: Goal[] = [];
+/*  public goalList: Goal[] = [
     {
       startDate: new Date("2023-03-19T10:30:00"),
       titel: "gestopt met roken",
@@ -36,14 +41,33 @@ export class GoalServiceService {
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra, lacus non tristique euismod, felis odio sodal",
       time: ""
     }
-  ];
-  constructor() { }
+  ]; */
+  constructor(private http: HttpClient) { }
   getGoals(): Goal[] {
     return this.goalList;
+  }
+  getGoalsFromDB(): Observable<Goal[]> {
+    const url = "http://localhost:3000/goals";
+    return this.http.get<Goal[]>(url).pipe(
+      map((response: any[]) => {
+        return response.map(goal => ({
+          id: goal.id,
+          startDate: new Date(goal.startDate),
+          titel: goal.title,
+          description: goal.description,
+          time: goal.time
+        }));
+      })
+    );
   }
   addGoal(goal: Goal) {
     this.goalList.push(goal);
   } //van INDEXEN NAAR GOAL OBJECTEN AAN HET GAAN
+  addGoalToDB(goal: Goal): Observable<Goal>
+  {
+    const url = "http://localhost:3000/goals";
+    return this.http.post<Goal>(url, {id: goal.id, startDate: goal.startDate, title: goal.titel, description: goal.description });
+  }
   editGoal(x: Goal)
   {
     let i = 0;

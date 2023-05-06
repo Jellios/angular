@@ -1,15 +1,15 @@
-<form >
-  <div class="form-group">
+<form class=" container my-4 p-5   bg-secondary was-validated ">
+  <div class="form-floating my-5">
+    <input type="date" class="form-control" id="startDate" [(ngModel)]="startDate" name="startDate" required>
     <label for="startDate">Start Date:</label>
-    <input type="date" class="form-control" id="startDate" [(ngModel)]="startDate" name="startDate">
   </div>
-  <div class="form-group">
-    <label for="title">Title:</label>
-    <input type="text" class="form-control" id="title" [(ngModel)]="title" name="title">
+  <div class="form-floating my-5">
+    <input type="text" class="form-control" id="title" placeholder="enter username" [(ngModel)]="title" name="title" required>
+    <label for="title" class="form-label">Title:</label>
   </div>
-  <div class="form-group">
+  <div class="form-floating my-5">
+    <textarea class="form-control" id="description" [(ngModel)]="description" name="description" required></textarea>
     <label for="description">Description:</label>
-    <textarea class="form-control" id="description" [(ngModel)]="description" name="description"></textarea>
   </div>
   <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Goal</button>
 </form>

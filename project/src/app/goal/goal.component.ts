@@ -1,18 +1,38 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Goal } from '../goal';
 import { GoalServiceService } from '../goal-service.service';
+import { faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+
 
 @Component({
   selector: 'app-goal',
   templateUrl: './goal.component.html',
-  styleUrls: ['./goal.component.css']
+  styleUrls: ['./goal.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('in', style({ opacity: 1})),
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(300)
+      ]),
+      transition(':leave',
+      animate(300, style({ opacity: 0 })))
+    ])
+  ]
 })
 
 export class GoalComponent implements OnInit {
+  isHovered: boolean = false;
 
-
+  toggleHover() {
+    this.isHovered = !this.isHovered;
+  }
+  showGoal = false;
+   settingsToggled: boolean = false;
 
   @Input() goal: Goal = {
+    id: 0,
     startDate: new Date(),
     titel: '',
     description: '',
@@ -27,7 +47,7 @@ export class GoalComponent implements OnInit {
   progress: string = "";
 
   constructor(private goalService: GoalServiceService) {
-
+    this.goal.time = "";
     setInterval(() => {
       this.currentTime++;
       this.progressInSeconds = Math.floor((new Date().getTime() - this.goal.startDate.getTime()) / 1000);
@@ -36,7 +56,7 @@ export class GoalComponent implements OnInit {
       this.minutes = Math.floor((this.progressInSeconds % (60 * 60)) / 60);
       this.seconds = Math.floor(this.progressInSeconds % 60);
       this.progress= `${this.days} days, ${this.hours} hours, ${this.minutes} minutes, ${this.seconds} seconds`;
-
+      this.showGoal = true;
     }, 1000);
   }
   resetTime()
@@ -49,11 +69,30 @@ export class GoalComponent implements OnInit {
   {
    // this.goalService.deleteGoal()
   }
+  toggleOptions(): void {
+    if (this.settingsToggled)
+    {
+      this.settingsToggled = false;
+    }
+    else
+    {
+      this.settingsToggled = true;
+    }
+  }
 ngOnInit(): void {
 
-  setInterval(() => {
 
+  setInterval(() => {
+    this.currentTime++;
+    this.progressInSeconds = Math.floor((new Date().getTime() - this.goal.startDate.getTime()) / 1000);
+    this.days = Math.floor(this.progressInSeconds / (24 * 60 * 60));
+    this.hours = Math.floor((this.progressInSeconds % (24 * 60 * 60)) / (60 * 60));
+    this.minutes = Math.floor((this.progressInSeconds % (60 * 60)) / 60);
+    this.seconds = Math.floor(this.progressInSeconds % 60);
+    this.progress= `${this.days} days, ${this.hours} hours, ${this.minutes} minutes, ${this.seconds} seconds`;
+    this.showGoal = true;
   }, 1000);
+
 
 }
 

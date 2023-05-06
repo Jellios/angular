@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Goal } from '../goal';
 import { GoalServiceService } from '../goal-service.service';
 
+
 @Component({
   selector: 'app-goals',
   templateUrl: './goals.component.html',
@@ -16,6 +17,17 @@ export class GoalsComponent implements OnInit
   constructor(private goalService: GoalServiceService) { }
 
   ngOnInit() {
-    this.goals = this.goalService.getGoals();
+this.onGetGoals();
   }
+  onGetGoals(): void {
+    this.goalService.getGoalsFromDB().subscribe({
+      next: (response: Goal[]) => {
+        console.log('received goals: ', response);
+        this.goals = response;
+      },
+      error: (error) => console.log('error: ', error),
+      complete: () => console.log('ready!')
+    });
+  }
+
 }

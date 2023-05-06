@@ -1,22 +1,23 @@
-<div class="card mb-4 bg-primary text-white" style="height: 220px;">
+  <div class="card mb-4 bg-primary text-white" style="height: 220px;"
+  *ngIf="showGoal"  [@fadeInOut]="'in'"  [ngClass]="{'hovered': isHovered}" (mouseover)="toggleHover()" (mouseout)="toggleHover()">
+
   <div class="card-header border-0">
-    <div ngbDropdown class="d-inline-block" style="float: right">
-      <button class="btn btn-secondary btn-sm" id="dropdownMenuButton" ngbDropdownToggle>
+      <button (click)="toggleOptions()" class="btn btn-secondary btn-sm" style="float:right; margin-top: 2px; margin-right: 5px;" type="button" id="dropdownMenuButton"  aria-expanded="false">
         <i class="fas fa-cog"></i>
       </button>
-      <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
-        <button ngbDropdownItem (click)="onDeleteGoal()">Delete goal</button>
-        <button ngbDropdownItem>Edit goal</button>
-        <button ngbDropdownItem>Pause goal</button>
+      <div class="men float-end" *ngIf="settingsToggled">
+        <ul class="dropdown-menu" [ngClass]="{'show': settingsToggled}">
+          <li><button class="dropdown-item" (click)="onDeleteGoal()">Delete goal</button></li>
+          <li><button class="dropdown-item">Edit goal</button></li>
+          <li><button class="dropdown-item" (click)="resetTime()">Reset time</button>
+        </ul>
       </div>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ goal.titel }}</h5>
+      <div class="card-text">
+        <p>{{ goal.description | slice:0:100 }}{{goal.description.length > 100 ? '...': ''}}</p>
+      </div>
+      <p class="card-text">{{ this.progress }}</p>
     </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">{{ goal.titel }}</h5>
-    <div class="card-text">
-      <p>{{ goal.description | slice:0:50 }}{{goal.description.length > 50 ? '...': ''}}</p>
-    </div>
-    <p class="card-text">{{this.progress}} </p>
-    <button class="knop btn-secondary btn-sm text-white bg-secondary" (click)="resetTime()">Reset time</button>
-  </div>
-</div>

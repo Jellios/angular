@@ -1,6 +1,21 @@
+.card {
+  position: relative;
+  /* Add other existing styles for .card */
+}
+
+.card.hovered {
+  z-index: 41;
+  transform: translateY(-5px);
+  box-shadow: 20px 0 20px rgba(0, 0, 0, 0.2);
+  /* Add other existing styles for .card.hovered */
+}
+
 .knopSettings
 {
-  float: right;
-  margin-top: 2px;
-  margin-right: 10px;
+  margin-right: 20px;
+}
+.men {
+    position: relative;
+    left: +36px;
+  /* Add other existing styles for .knopSettings and .men */
 }

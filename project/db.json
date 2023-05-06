@@ -1,0 +1,46 @@
+{
+  "goals": [
+    {
+      "id": 1,
+      "startDate": "2023-03-19T10:30:00",
+      "title": "gestopt met roken",
+      "description": "gestopt met roken na ontspanningsweekend met de chiro"
+    },
+    {
+      "id": 2,
+      "startDate": "2023-05-04T10:30:00",
+      "title": "tijd sinds may the fourth",
+      "description": "tijd verstreken sinds may the fourth 2023"
+    },
+    {
+      "id": 3,
+      "startDate": "2001-11-18T00:00:00.000Z",
+      "title": "niet doodgaan",
+      "description": "niet sterven lol"
+    },
+    {
+      "id": 4,
+      "startDate": "2001-11-18T00:00:00.000Z",
+      "title": "niet doodgaan",
+      "description": "niet sterven lol"
+    },
+    {
+      "id": 5,
+      "startDate": "2001-11-18T00:00:00.000Z",
+      "title": "niet doodgaan",
+      "description": "niet sterven lol"
+    },
+    {
+      "id": 6,
+      "startDate": "2001-11-18T00:00:00.000Z",
+      "title": "niet doodgaan",
+      "description": "niet sterven lol"
+    },
+    {
+      "id": 7,
+      "startDate": "2001-11-18T00:00:00.000Z",
+      "title": "niet doodgaan",
+      "description": "niet sterven lol"
+    }
+  ]
+}
