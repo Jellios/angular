@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EdditGoalComponent } from './eddit-goal/eddit-goal.component'; // Import
 import { DatePipe } from '@angular/common';
+import { ShortenTextPipe } from './shorten-text.pipe';
 
 
 
@@ -25,7 +26,8 @@ import { DatePipe } from '@angular/common';
     GoalFormComponent,
     NavigationComponent,
     DashboardComponent,
-    EdditGoalComponent
+    EdditGoalComponent,
+    ShortenTextPipe
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@
   *ngIf="showGoal"  [@fadeInOut]="'in'"  [ngClass]="{'hovered': isHovered}" (mouseover)="toggleHover()" (mouseout)="toggleHover()">
 
   <div class="card-header border-0">
-    <div class="card-title float-start my-2 w-75"><h5>{{goal.titel | slice:0:500}}</h5></div>
+    <div class="card-title float-start my-2 w-75"><h5>{{goal.titel | shortenText:120}}</h5></div>
       <button (click)="toggleOptions()" class="btn btn-secondary btn-sm" style="float:right; margin-top: 2px; margin-right: 5px;" type="button" id="dropdownMenuButton"  aria-expanded="false">
         <i class="fas fa-cog"></i>
       </button>
