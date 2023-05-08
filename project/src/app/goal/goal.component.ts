@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Goal } from '../goal';
 import { GoalServiceService } from '../goal-service.service';
-import { faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { faL, faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 
@@ -31,6 +31,9 @@ export class GoalComponent implements OnInit {
   showGoal = false;
    settingsToggled: boolean = false;
 
+  @Output() goalDeleted = new EventEmitter<Goal>();
+
+
   @Input() goal: Goal = {
     id: 0,
     startDate: new Date(),
@@ -38,6 +41,8 @@ export class GoalComponent implements OnInit {
     description: '',
     time: ""
   };
+
+
   currentTime: number = 0;
   progressInSeconds: number = 0;
   days: number = 0;
@@ -64,11 +69,25 @@ export class GoalComponent implements OnInit {
     this.goal.time = "0";
     this.currentTime = 0;
     this.goal.startDate = new Date();
+    this.goalService.editGoal(this.goal).subscribe(
+      (response: Goal) => {
+        console.log("reset time for: ",this.goal);
+      }
+    );
+    this.settingsToggled = false;
   }
-  onDeleteGoal()
-  {
-   // this.goalService.deleteGoal()
+
+
+  onDeleteGoal(): void {
+    this.goalService.deleteGoalFromDB(this.goal.id).subscribe(
+      (response: any) => {
+        console.log('deleted goal: ', response);
+        this.goalDeleted.emit(this.goal);
+      }
+    )
   }
+
+
   toggleOptions(): void {
     if (this.settingsToggled)
     {
@@ -79,6 +98,9 @@ export class GoalComponent implements OnInit {
       this.settingsToggled = true;
     }
   }
+
+
+
 ngOnInit(): void {
 
 

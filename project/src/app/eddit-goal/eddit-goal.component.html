@@ -1,0 +1,17 @@
+<div *ngIf="goal" class="container my-4 p-5 bg-secondary">
+  <form class="was-validated">
+    <div class="form-floating my-5">
+      <input type="datetime-local" class="form-control" id="startDate" [ngModel]="goal.startDate |date:'yyyy-MM-ddTHH:mm'" (ngModelChange)="goal.startDate = $event" name="startDate" required>
+      <label for="startDate">Start Date:</label>
+    </div>
+    <div class="form-floating my-5">
+      <input type="text" class="form-control" id="titel" [ngModel]="goal.titel" (input)="setTitel($event)" name="titel" required maxlength="40" minlength="4">
+      <label for="titel" class="form-label">Title:</label>
+    </div>
+    <div class="form-floating my-5">
+      <textarea class="form-control" id="description" [(ngModel)]="goal.description" name="description" required></textarea>
+      <label for="description">Description:</label>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save changes</button>
+  </form>
+</div>

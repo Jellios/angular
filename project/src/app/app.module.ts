@@ -11,7 +11,9 @@ import { RouterModule } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EdditGoalComponent } from './eddit-goal/eddit-goal.component'; // Import
+import { DatePipe } from '@angular/common';
 
 
 
@@ -22,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     GoalsComponent,
     GoalFormComponent,
     NavigationComponent,
-    DashboardComponent
+    DashboardComponent,
+    EdditGoalComponent
   ],
   imports: [
     BrowserModule,
@@ -31,13 +34,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     FontAwesomeModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: 'dashboard',component: GoalsComponent},
-      {path: 'new-goal',component: GoalFormComponent},
+      { path: 'dashboard', component: GoalsComponent },
+      { path: 'new-goal', component: GoalFormComponent },
+      { path: 'edit/:id', component: EdditGoalComponent },
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+      { path: '**', redirectTo: '/dashboard', pathMatch: 'full'},
     ]),
 
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

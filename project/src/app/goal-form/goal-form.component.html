@@ -1,10 +1,10 @@
 <form class=" container my-4 p-5   bg-secondary was-validated ">
   <div class="form-floating my-5">
-    <input type="date" class="form-control" id="startDate" [(ngModel)]="startDate" name="startDate" required>
+    <input type="datetime-local" class="form-control" id="startDate" [(ngModel)]="startDate" name="startDate" required>
     <label for="startDate">Start Date:</label>
   </div>
   <div class="form-floating my-5">
-    <input type="text" class="form-control" id="title" placeholder="enter username" [(ngModel)]="title" name="title" required>
+    <input type="text" class="form-control" id="title" placeholder="enter goal title" [(ngModel)]="title" name="title" required maxlength="40" minlength="4">
     <label for="title" class="form-label">Title:</label>
   </div>
   <div class="form-floating my-5">

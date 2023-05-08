@@ -3,6 +3,9 @@ import { Goal } from './goal';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { GoalComponent } from './goal/goal.component';
+import { tap } from 'rxjs/operators';
+import { NavigationComponent } from './navigation/navigation.component';
+import { AppComponent } from './app.component';
 
 
 @Injectable({
@@ -53,7 +56,7 @@ export class GoalServiceService {
         return response.map(goal => ({
           id: goal.id,
           startDate: new Date(goal.startDate),
-          titel: goal.title,
+          titel: goal.titel,
           description: goal.description,
           time: goal.time
         }));
@@ -66,13 +69,13 @@ export class GoalServiceService {
   addGoalToDB(goal: Goal): Observable<Goal>
   {
     const url = "http://localhost:3000/goals";
-    return this.http.post<Goal>(url, {id: goal.id, startDate: goal.startDate, title: goal.titel, description: goal.description });
+    return this.http.post<Goal>(url, {id: goal.id, startDate: goal.startDate, titel: goal.titel, description: goal.description });
   }
   editGoal(x: Goal)
   {
-    let i = 0;
-    i = this.getIndex(x);
-    this.goalList[i] = x;
+   const url = "http://localhost:3000/goals/" + x.id;
+   return this.http.put<Goal>(url,x);
+
   }
   deleteGoal(x: Goal)
   {
@@ -81,8 +84,26 @@ export class GoalServiceService {
     i = this.getIndex(x);
     this.goalList.splice(i,1);
   }
+  deleteGoalFromDB(id: number) {
+    const url = "http://localhost:3000/goals/" + id;
+    return this.http.delete(url).pipe(
+      tap(() => {
+        const index = this.goalList.findIndex(goal => goal.id === id);
+        if (index > -1) {
+          this.goalList.splice(index, 1);
+        }
+      })
+    );
+  }
+
+  getGoalById(id: number): Observable<Goal> {
+    const url = "http://localhost:3000/goals/" + id;
+    return this.http.get<Goal>(url);
+  }
+
   getIndex(x: Goal):number
   {
     return this.goalList.indexOf(x);
+
   }
 }

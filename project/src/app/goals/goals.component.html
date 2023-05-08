@@ -3,7 +3,7 @@
 
 
       <div *ngFor="let item of goals" class="col-md-6 p-2">
-        <app-goal [goal]="item"></app-goal>
+        <app-goal [goal]="item" (goalDeleted)="onGoalDeleted($event)"></app-goal>
       </div>
     </div>
   </div>

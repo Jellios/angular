@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Goal } from '../goal';
 import { eventListeners } from '@popperjs/core';
 import { GoalServiceService } from '../goal-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-goal-form',
@@ -21,7 +22,7 @@ export class GoalFormComponent {
     time: ""
   };
 
-constructor(private goalService: GoalServiceService) {}
+constructor(private goalService: GoalServiceService, private activatedRoute: ActivatedRoute, private router: Router) {}
 
   onSubmit() {
    this.goal.titel = this.title;
@@ -39,7 +40,7 @@ constructor(private goalService: GoalServiceService) {}
    this.startDate = new Date();
     this.title = '';
     this.description = '';
-
+    this.router.navigate(['dashboard'])
 
   }
 }

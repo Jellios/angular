@@ -1,5 +1,6 @@
 .card {
   position: relative;
+  min-height: 225px;
   /* Add other existing styles for .card */
 }
 

@@ -30,4 +30,9 @@ this.onGetGoals();
     });
   }
 
+  onGoalDeleted(deletedGoal: Goal) {
+    this.goals = this.goals.filter(goal => goal.id !== deletedGoal.id);
+  }
+
+
 }
