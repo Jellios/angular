@@ -37,7 +37,7 @@ export class GoalComponent implements OnInit {
   @Input() goal: Goal = {
     id: 0,
     startDate: new Date(),
-    titel: '',
+    title: '',
     description: '',
     time: ""
   };

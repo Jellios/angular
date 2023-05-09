@@ -13,7 +13,7 @@ export class EdditGoalComponent implements OnInit {
     id: 0,
     time:'',
     startDate: new Date(),
-    titel: "",
+    title: "",
     description: "",
   }
 
@@ -31,7 +31,7 @@ export class EdditGoalComponent implements OnInit {
   setTitel(event: Event): void {
     if (this.goal) {
       const target = event.target as HTMLInputElement;
-      this.goal.titel = target.value;
+      this.goal.title = target.value;
     }
   }
 

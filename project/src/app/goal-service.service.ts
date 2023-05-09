@@ -56,7 +56,7 @@ export class GoalServiceService {
         return response.map(goal => ({
           id: goal.id,
           startDate: new Date(goal.startDate),
-          titel: goal.titel,
+          title: goal.title,
           description: goal.description,
           time: goal.time
         }));
@@ -69,7 +69,7 @@ export class GoalServiceService {
   addGoalToDB(goal: Goal): Observable<Goal>
   {
     const url = "http://localhost:3000/goals";
-    return this.http.post<Goal>(url, {id: goal.id, startDate: goal.startDate, titel: goal.titel, description: goal.description });
+    return this.http.post<Goal>(url, {id: goal.id, startDate: goal.startDate, title: goal.title, description: goal.description });
   }
   editGoal(x: Goal)
   {

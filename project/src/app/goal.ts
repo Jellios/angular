@@ -1,14 +1,14 @@
 export class Goal {
   id: number;
   startDate: Date;
-  titel: string;
+  title: string;
   description: string;
   time: string;
 
   constructor() {
     this.id = 0;
     this.startDate = new Date();
-    this.titel = "";
+    this.title = "";
     this.description = "";
     this.time = "";
   }

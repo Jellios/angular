@@ -5,8 +5,8 @@
       <label for="startDate">Start Date:</label>
     </div>
     <div class="form-floating my-5">
-      <input type="text" class="form-control" id="titel" [ngModel]="goal.titel" (input)="setTitel($event)" name="titel" required maxlength="40" minlength="4">
-      <label for="titel" class="form-label">Title:</label>
+      <input type="text" class="form-control" id="title" [ngModel]="goal.title" (input)="setTitel($event)" name="title" required maxlength="40" minlength="4">
+      <label for="title" class="form-label">Title:</label>
     </div>
     <div class="form-floating my-5">
       <textarea class="form-control" id="description" [(ngModel)]="goal.description" name="description" required></textarea>

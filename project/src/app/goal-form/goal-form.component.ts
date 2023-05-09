@@ -17,7 +17,7 @@ export class GoalFormComponent {
   goal: Goal = {
     id: 0,
     startDate: new Date(),
-    titel: '',
+    title: '',
     description: '',
     time: ""
   };
@@ -25,7 +25,7 @@ export class GoalFormComponent {
 constructor(private goalService: GoalServiceService, private activatedRoute: ActivatedRoute, private router: Router) {}
 
   onSubmit() {
-   this.goal.titel = this.title;
+   this.goal.title = this.title;
     this.goal.startDate = new Date(this.startDate);
     this.goal.description = this.description;
     this.goalService.addGoalToDB(this.goal).subscribe({
