@@ -26,8 +26,8 @@
     <div class="card-body">
       <p class="card-text">Sinds: {{goal.startDate | date:'yyyy-MM-dd HH:mm'}}</p>
       <div class="card-text">
-       <!--<p>{{ goal.description | slice:0:100 }}{{goal.description.length > 100 ? '...': ''}}</p> -->
-        <p>{{ goal.description }}</p>
+       <p>{{ goal.description | slice:0:500 }}{{goal.description.length > 500 ? '...': ''}}</p>
+
 
       </div>
       <p class="card-text">{{ this.progress }}</p>
