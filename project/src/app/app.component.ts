@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { GoalServiceService } from './goal-service.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +7,4 @@ import { GoalServiceService } from './goal-service.service';
 })
 export class AppComponent {
   title = 'project';
-  constructor(public goalService: GoalServiceService) { };
 }

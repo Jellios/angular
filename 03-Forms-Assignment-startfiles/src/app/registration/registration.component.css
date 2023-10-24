@@ -1,0 +1,23 @@
+.title {
+  display: inline-block;
+  width: 40%;
+  font-weight: bold;
+}
+
+label {
+  font-weight: bold;
+}
+
+input.ng-invalid.ng-touched {
+  background-color: red;
+  border: 1px solid darkred;
+}
+
+.error-message {
+  color: red;
+  font-style: italic;
+}
+
+.btn {
+  margin: 2%;
+}

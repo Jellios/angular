@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-6">
+    <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="form-control" />
+          <span>
+            <p class="error-message">
+              Please enter your last name.
+            </p>
+            <p class="error-message">
+              Your name must be at least 4 letters long.
+            </p>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" class="form-control" />
+          <p class="error-message">
+            Please enter your first name.
+          </p>
+        </div>
+
+      <div class="radio" *ngFor="let gender of genders">
+        <label>
+          <input type="radio" name="gender" [value]="gender" />
+            {{ gender }}
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control"/>
+        <p class="error-message">
+          Please enter your date of birth.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" class="form-control" />
+        <p class="error-message">
+          Enter a correct email address.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="payment">Payment</label>
+        <select id="payment" name="payment" class="form-control">
+          <option *ngFor="let payment of paymentOptions; let i = index" [value]="i">{{payment}}</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Submit</button>
+      <button class="btn btn-primary" type="button">Default user</button>
+    </form>
+  </div>
+
+  <div class="col-6">
+    <h1>Your data</h1>
+      <p><span class="title">Name and first name:</span></p>
+      <p><span class="title">gender:</span></p>
+      <p><span class="title">date of birth:</span></p>
+      <p><span class="title">email:</span></p>
+      <p><span class="title">payment method:</span></p>
+  </div>
+</div>
+
+
+
+
+
+
+
+

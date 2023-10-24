@@ -1,0 +1,6 @@
+<button [appClickCounter]="0" (click)="onClick()">klik</button>
+<div>
+    <button *ngIf="this.show" (click)="onClickHide()">Hide</button>
+    <button *ngIf="!this.show" (click)="onClickShow()">Show</button>
+    <p *ngIf="this.show" appRenderingDelay="10000">{{this.tmp}} </p> 
+</div>

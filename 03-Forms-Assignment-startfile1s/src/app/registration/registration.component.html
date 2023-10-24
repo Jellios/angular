@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-6">
+    <form (ngSubmit)="onSubmit()" #f="ngForm">
+      <div id="fullName" ngModelGroup="fullName" #fullName="ngModelGroup" >
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="form-control" required ngModel minlength="4"  #name="ngModel" />
+          <span *ngIf="!name.valid && name.touched" >
+            <p  *ngIf="name.errors && name.errors['required']" class="error-message">
+              Please enter your last name.
+            </p>
+            <p *ngIf="name.errors && name.errors['minlength']"  class="error-message">
+              Your name must be at least 4 letters long.
+            </p>
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" class="form-control" required  ngModel #firstName="ngModel" />
+          <p *ngIf="!firstName.valid && firstName.touched" class="error-message">
+            Please enter your first name.
+          </p>
+        </div>
+      </div>
+        
+
+    
+
+      <div class="radio" *ngFor="let gender of genders">
+        <label>
+          <input type="radio" name="gender" [value]="gender" ngModel required/>
+            {{ gender }}
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" required ngModel #dateOfBirth="ngModel"/>
+        <p *ngIf="!dateOfBirth.valid && dateOfBirth.touched" class="error-message">
+          Please enter your date of birth.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" class="form-control" required email ngModel #email="ngModel" />
+
+        <p *ngIf="!email.valid && email.touched" class="error-message">
+          Enter a correct email address.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="payment">Payment</label>
+        <select id="payment" name="payment" class="form-control" ngModel required #paymentF="ngModel">
+          <option *ngFor="let payment of paymentOptions; let i = index" [value]="i">{{payment}}</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Submit</button>
+      <button class="btn btn-primary" type="button">Default user</button>
+    </form>
+  </div>
+
+  <div class="col-6">
+    <h1>Your data</h1>
+      <p><span class="title">Name and first name: {{user.fullName.firstName}} {{user.fullName.name}}</span></p>
+      <p><span class="title">gender: {{user.gender}}</span></p>
+      <p><span class="title">date of birth: {{user.dateOfBirth}}</span></p>
+      <p><span class="title">email: {{user.email}}</span></p>
+      <p><span class="title">payment method: {{paymentF.value}}</span></p>
+  </div>
+</div>
+
+
+
+
+
+
+
+

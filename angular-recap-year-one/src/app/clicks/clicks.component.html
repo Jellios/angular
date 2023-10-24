@@ -1,0 +1,10 @@
+<button (click)="onClick()">show clicks</button>
+<div *ngIf="show">
+    <ul>
+        
+        <li *ngFor="let x of lijst" [ngStyle]="{'background-color' : even(x)?'grey':'white'}">
+        {{x}}
+    </li>
+    </ul>
+    
+</div>

@@ -1,0 +1,13 @@
+<div class="clearfix">
+    <h2>Contact details</h2>
+    <p class="shift">
+      contact name: {{this.contact.lastName}} {{contact.firstName}}
+    </p>
+    <p class="shift">
+        Phone: {{contact.phoneNr}}
+    </p>
+  </div>
+  <div>
+    <input type="button" class="btn btn-primary" value="Edit" (click)="editContact()"/>
+    <input type="button" class="btn btn-danger" value="Delete" (click)="deleteContact()" />
+  </div>
