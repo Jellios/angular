@@ -32,7 +32,8 @@ ngOnInit(): void {
   
   this.form = this.fb.group({
     'email': [null],
-    'passwd': [null]
+    'passwd': [null],
+    'passwd2': [null]
   });
 
   /*const emailControl = this.form.get('email')
