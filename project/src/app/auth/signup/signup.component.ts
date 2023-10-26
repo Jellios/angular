@@ -33,7 +33,7 @@ onSignup(): void {
   this.authService.signup(email,password)
   .then((res)=> {
     if (res == 'success') {
-      this.router.navigate(['login']);
+      this.router.navigate(['auth/login']);
     }
     else {
       alert(res);
