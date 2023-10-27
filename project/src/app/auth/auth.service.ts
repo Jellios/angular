@@ -3,7 +3,7 @@ import { Firestore, collectionData, collection,CollectionReference} from '@angul
 import {Observable} from 'rxjs';
 import { Router } from '@angular/router';
 import {Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from '@angular/fire/auth'
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import {  AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 
 
 @Injectable({
@@ -23,7 +23,9 @@ export class AuthService {
 
   signup(email: string, passwd: string): Promise<string> {
     return createUserWithEmailAndPassword(this.auth, email, passwd)
-      .then(() => {
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
         return 'success';
       })
       .catch((error) => {
@@ -63,10 +65,35 @@ isLoggedIn(): boolean {
 }
 
 
-doPasswordsMatch(passwd1: string, passwd2: string, callback: (match: boolean) => void): void {
-  setTimeout(() => {
-    callback(passwd1 === passwd2);
-  }, 1500);
+paswordsMatch(fgp: FormGroup): Promise<any> |Observable<any> {
+  const answer = new  Promise<any>((resolve,reject) => {
+    console.log(fgp);
+    if (fgp.controls['passwd'].value == fgp.controls['passwd2'].value)
+    {
+      console.log("passwords match");
+      let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      if(regex.test(fgp.controls['passwd'].value))
+      {
+        // If password passes regex test, resolve the promise
+        console.log("password is strong");
+        resolve(null);
+      }
+      else 
+      {
+        // If password fails regex test, resolve the promise with an error
+        console.log("password is not strong");
+        resolve({'passwordNotStrong':true});
+      }
+      
+    }
+    else
+    {
+      console.log("passwords do not match");
+     
+      resolve({'passwordsNotMatch':true});
+    }
+  });
+  return answer;
 }
 
 }
