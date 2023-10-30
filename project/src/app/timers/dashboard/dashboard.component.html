@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<div class="container mt-5">
+    <div class="row" *ngFor="let timer of timerList; let i = index">
+
+       <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{timer['title']}}</h5>
+                    <p class="card-text">{{timer['description']}}</p>
+                    <p class="card-text">{{this.dateList[i]}}</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div> 
+        </div>
+
+    </div>
+</div>

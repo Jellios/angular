@@ -6,6 +6,7 @@ import { TimersComponent } from './timers.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
+import { TimersService } from './timers.service';
 
 
 @NgModule({
@@ -18,6 +19,10 @@ import { AuthService } from '../auth/auth.service';
     TimersRoutingModule,
     FormsModule
   ],
-  providers: [AuthService]
+  providers: [TimersService, AuthService]
 })
-export class TimersModule { }
+export class TimersModule { 
+  constructor () {
+    console.log("timers module");
+  }
+}

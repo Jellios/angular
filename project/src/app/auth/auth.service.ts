@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collectionData, collection,CollectionReference} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
+import { Firestore, collectionData, collection,CollectionReference, doc, setDoc, addDoc} from '@angular/fire/firestore';
+import {Observable, from} from 'rxjs';
 import { Router } from '@angular/router';
 import {Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from '@angular/fire/auth'
 import {  AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import {  AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors 
 })
 export class AuthService {
 
-  constructor(private router:Router,private auth: Auth) { 
+  constructor(private router:Router,private auth: Auth, private db: Firestore ) { 
 
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
@@ -21,19 +22,34 @@ export class AuthService {
 
   token: string| null = null;
 
-  signup(email: string, passwd: string): Promise<string> {
+ signup(email: string, passwd: string): Promise<string> {
     return createUserWithEmailAndPassword(this.auth, email, passwd)
       .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
+        const user = userCredential.user['uid'];
+        const userString = JSON.stringify(user);
+       // console.log(user);
+      // this.backendservice.createUser(email, user);
+      this.createUser(email, userString);
         return 'success';
       })
       .catch((error) => {
         console.error('Error during signup:', error);
         return error.message || 'An error occurred during signup.';
       });
-    }
+    } 
 
+    /*async signup(email: string, passwd: string): Promise<string> {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(this.auth, email, passwd);
+        const user = userCredential.user;
+        const userString = JSON.stringify(user);
+        this.createUser(email, userString);
+        return 'success';
+      } catch (error: any) {
+        console.error('Error during signup:', error);
+        return error.message || 'An error occurred during signup.';
+      }
+    } */
 login(email: string, passwd: string) {
   return signInWithEmailAndPassword(this.auth,email,passwd)
   .then( () => {
@@ -96,10 +112,23 @@ paswordsMatch(fgp: FormGroup): Promise<any> |Observable<any> {
   return answer;
 }
 
+
+createUser(email:string,customID: string) {
+const newID = doc(collection(this.db, 'id')).id;
+const ref = doc(this.db, 'users/'+newID);
+return from(setDoc(ref, {'userID':customID, 'email':email, 'isAdmin': false})); 
+
 }
 
 
-
-
-
+getCurrentUser() {
+  
+  if (this.auth.currentUser) {
+    
+    return this.auth.currentUser;
+  } else {
+    return null;
+  }
+}
+}
 

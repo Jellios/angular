@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, Form } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
