@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef  } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -8,9 +8,10 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent {
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, private cd: ChangeDetectorRef) {}
   onLogout(): void {
     this._authService.logout();
+    this.cd.detectChanges();
   }
   get authService() {
     return this._authService;

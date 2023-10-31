@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
         this.invalidLogin = false;
         //router navigation hier on successfull login
         console.log("logged in successfully");
+        this.router.navigate(['timers/dashboard']);
       }
     })
   }

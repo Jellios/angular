@@ -16,8 +16,9 @@ export class AuthService {
 
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
+     
     }
-
+    console.log("logged in: "+ localStorage.getItem('token')); 
   }
 
   token: string| null = null;
@@ -58,6 +59,7 @@ login(email: string, passwd: string) {
       (token: string) => {
         this.token = token;
         localStorage.setItem('token',token);
+        
         return true;
       }
     );
@@ -73,7 +75,7 @@ logout():void {
   this.auth.signOut();
   this.token = null;
   localStorage.removeItem('token');
-  this.router.navigate(['/login']);
+  this.router.navigate(['auth/login']);
 
 }
 isLoggedIn(): boolean {

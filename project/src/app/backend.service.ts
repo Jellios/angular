@@ -15,7 +15,7 @@ export class BackendService {
   getAllTimers(): Observable<Timer[]> {
     const user = this._authService.getCurrentUser();
     if (!user || !user.uid) {
-      this.router.navigate(['auth/login']);
+      //this.router.navigate(['auth/login']);
       return new Observable<Timer[]>(); // Return an empty observable or handle this case accordingly
     }
   

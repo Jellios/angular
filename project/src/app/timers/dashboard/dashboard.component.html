@@ -1,16 +1,15 @@
 <div class="container mt-5">
-    <div class="row" *ngFor="let timer of timerList; let i = index">
-
-       <div class="col">
-            <div class="card">
+    <div class="row">
+        <div class="col-md-6" *ngFor="let timer of timerList; let i = index">
+            <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">{{timer['title']}}</h5>
                     <p class="card-text">{{timer['description']}}</p>
                     <p class="card-text">{{this.dateList[i]}}</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <p class="card-text">{{this.calculateTime(i)}}</p>
+                    <a href="#" class="btn btn-secondary" (click)="editTimer(i)">Edit</a>
                 </div>
-            </div> 
+            </div>
         </div>
-
     </div>
 </div>

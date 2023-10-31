@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TimersService } from '../timers.service';
 import { Timer } from '../timer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,7 @@ export class DashboardComponent implements OnInit {
   timerList: Timer[] = [];
   dateList: Date[] = [];
 
-  constructor(private timerService: TimersService) {
+  constructor(private timerService: TimersService, private router: Router) {
     console.log("dashboard component loaded");
   }
 
@@ -28,5 +29,15 @@ export class DashboardComponent implements OnInit {
         }
       }
     });
+  }
+  calculateTime(x:number): string
+  {
+   
+      const out = this.timerService.calculateTimeAgo(this.dateList[x]);
+      return out;
+   
+  }
+  editTimer(x:number) {
+    this.router.navigate(['timers/timerDetails']);
   }
 }
