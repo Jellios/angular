@@ -1,0 +1,40 @@
+import { Component, OnInit } from '@angular/core';
+import { TimersService } from '../timers.service';
+import { Timer } from '../timer';
+import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-timer-details',
+  templateUrl: './timer-details.component.html',
+  styleUrls: ['./timer-details.component.css']
+})
+export class TimerDetailsComponent implements OnInit {
+
+  timer: Timer = {
+    title: '',
+    description: '',
+    startDate: null as any, // Set startDate to null
+  };
+  tmpDate: string | null = null; // Change the type to string | null
+
+  constructor(private timersService: TimersService, private datePipe: DatePipe, private router:Router) {
+    if (this.timersService.selectedTimerId == -1)
+    {
+      this.router.navigate(['timers/dashboard']);
+    }
+    if (this.timersService.selectedTimerId >= 0 && this.timersService.selectedTimerId < this.timersService.timerList.length) {
+      this.timer = this.timersService.timerList[this.timersService.selectedTimerId];
+    }
+    if (this.timer.startDate) {
+      // Convert Firebase Timestamp to JavaScript Date using toDate()
+      const startDate = this.timer.startDate.toDate();
+      // Format the Date as a string using DatePipe
+      this.tmpDate = this.datePipe.transform(startDate, 'yyyy-MM-dd');
+    }
+  }
+
+  ngOnInit(): void {
+    console.log(this.timer.startDate);
+  }
+}

@@ -1,21 +1,25 @@
 import { Injectable } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { Timer } from './timer';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Timestamp } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimersService {
-  //timerList: Timer[] = [];
-
+  timerList: Timer[] = [];
+  selectedTimerId: number = -1;
   constructor(private backendservice: BackendService) {
     this.getAllTimers();
   }
 
-  getAllTimers(): Observable<Timer[]> { // Make sure to specify the return type
-    return this.backendservice.getAllTimers(); // Return the Observable
+  getAllTimers(): Observable<Timer[]> {
+    return this.backendservice.getAllTimers().pipe(
+      tap((timers) => {
+        this.timerList = timers;
+      })
+    );
   }
   timestampToDate(tStamp: Timestamp): Date {
     const firestoreTimestamp: Timestamp = tStamp;
@@ -34,4 +38,7 @@ export class TimersService {
     return `${days} days, ${hours % 24} hours, ${minutes % 60} minutes, ${seconds % 60} seconds ago`;
   }
  
+
+
+
 }

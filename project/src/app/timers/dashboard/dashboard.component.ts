@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
         }
       }
     });
+    
   }
   calculateTime(x:number): string
   {
@@ -38,6 +39,7 @@ export class DashboardComponent implements OnInit {
    
   }
   editTimer(x:number) {
+    this.timerService.selectedTimerId = x;
     this.router.navigate(['timers/timerDetails']);
   }
 }

@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { TimerDetailsComponent } from './timer-details.component';
+
+describe('TimerDetailsComponent', () => {
+  let component: TimerDetailsComponent;
+  let fixture: ComponentFixture<TimerDetailsComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ TimerDetailsComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(TimerDetailsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
