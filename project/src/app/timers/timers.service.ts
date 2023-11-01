@@ -53,5 +53,15 @@ export class TimersService {
     this.backendservice.addTimer(timer);
 
   }
+  deleteTimer(x: number) {
+    if (x >= 0 && x < this.timerList.length) {
+        const timerId = this.timerList[x].id; // Assuming you have an 'id' property in your Timer object
+        this.backendservice.deleteTimer(timerId).subscribe(() => {
+            // Remove the deleted timer from your local timerList
+            this.timerList.splice(x, 1);
+        });
+    }
+}
+
 
 }

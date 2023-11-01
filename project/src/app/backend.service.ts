@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collectionData, collection, CollectionReference, Timestamp, addDoc, doc, setDoc, collectionGroup, query, where, DocumentReference, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, CollectionReference, Timestamp, addDoc, doc, setDoc, collectionGroup, query, where, DocumentReference, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Observable, from } from 'rxjs';
 import { Timer } from './timers/timer';
 import { AuthService } from './auth/auth.service';
@@ -44,6 +44,10 @@ export class BackendService {
       // You can return an error or take an appropriate action.
       return /* Return an observable with an error or a specific value */;
     }
+  }
+  deleteTimer(id:string) {
+    const timerRef = doc(this.db, 'timers/'+id) as DocumentReference<Timer>;
+    return from(deleteDoc(timerRef));
   }
   
 }

@@ -15,6 +15,7 @@ export class NewTimerComponent implements OnInit {
   form!: FormGroup;
   tmpDate: string | null = null;
   timer: Timer = {
+    id: '',
     userID: '',
     title: '',
     description: '',
@@ -41,6 +42,7 @@ export class NewTimerComponent implements OnInit {
   this.timer.description = this.description.value;
   this.timer.startDate = Timestamp.fromDate(new Date(this.startDate.value));
   this.timersservice.addTimer(this.timer);
+  this.router.navigate(['timers/dashboard']);
   }
   onCancel() {
 

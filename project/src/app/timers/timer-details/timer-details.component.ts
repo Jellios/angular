@@ -14,6 +14,7 @@ import { Timestamp } from '@angular/fire/firestore';
 export class TimerDetailsComponent implements OnInit {
 
   timer: Timer = {
+    id: '',
     userID: '',
     title: '',
     description: '',
