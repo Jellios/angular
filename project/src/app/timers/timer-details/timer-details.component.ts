@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TimersService } from '../timers.service';
 import { Timer } from '../timer';
-import { DatePipe } from '@angular/common';
+import { DatePipe, FormatWidth } from '@angular/common';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-timer-details',
@@ -13,6 +14,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class TimerDetailsComponent implements OnInit {
 
   timer: Timer = {
+    userID: '',
     title: '',
     description: '',
     startDate: null as any, // Set startDate to null
@@ -25,11 +27,8 @@ export class TimerDetailsComponent implements OnInit {
     {
       this.router.navigate(['timers/dashboard']);
     }
-    this.form = this.fb.group({
-      'title': [''],
-      'description': [''],
-      'startDate': ['']
-    });
+    this.timer = this.timersService.timerList[this.timersService.selectedTimerId];
+   
     if (this.timersService.selectedTimerId >= 0 && this.timersService.selectedTimerId < this.timersService.timerList.length) {
       this.timer = this.timersService.timerList[this.timersService.selectedTimerId];
     }
@@ -39,12 +38,43 @@ export class TimerDetailsComponent implements OnInit {
       // Format the Date as a string using DatePipe
       this.tmpDate = this.datePipe.transform(startDate, 'yyyy-MM-dd');
     }
+    this.form = this.fb.group({
+      'title': [this.timer.title],
+      'description': [this.timer.description],
+      'startDate': [this.tmpDate]
+    });
+    
   }
-
+get title(): FormArray {
+  return this.form.controls['title'] as FormArray;
+}
+get description(): FormArray {
+  return this.form.controls['description'] as FormArray;
+}
+get startDate(): FormArray {
+  return this.form.controls['startDate'] as FormArray;
+}
   ngOnInit(): void {
-    console.log(this.timer.startDate);
+   // console.log(this.timer.startDate);
   }
   onSaveChanges() {
-    
+   
+
+
+  console.log(this.timer);
+  console.log(this.timer.startDate);
+   this.timer.title = this.title.value;
+   this.timer.description = this.description.value;
+   this.timer.startDate = Timestamp.fromDate(new Date(this.startDate.value));
+   console.log(this.timer.startDate);
+   console.log(this.timer);
+   this.timersService.timerList[this.timersService.selectedTimerId] = this.timer;
+   this.timersService.updateTimer();
+   this.router.navigate(['timers/dashboard']);
+  }
+  onDiscardChanges()
+  {
+    this.timersService.selectedTimerId = -1;
+    this.router.navigate(['timers/dashboard']);
   }
 }

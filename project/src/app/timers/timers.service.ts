@@ -39,6 +39,19 @@ export class TimersService {
   }
  
 
+  updateTimer()
+  {
+    this.backendservice.updateTimer(
+      this.timerList[this.selectedTimerId].title,
+      this.timerList[this.selectedTimerId].description,
+      this.timerList[this.selectedTimerId].startDate,
+      this.timerList[this.selectedTimerId].userID
+    );
+  }
+  addTimer(timer: Timer)
+  {
+    this.backendservice.addTimer(timer);
 
+  }
 
 }
