@@ -3,6 +3,7 @@ import { TimersService } from '../timers.service';
 import { Timer } from '../timer';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-timer-details',
@@ -16,13 +17,19 @@ export class TimerDetailsComponent implements OnInit {
     description: '',
     startDate: null as any, // Set startDate to null
   };
+  form !: FormGroup;
   tmpDate: string | null = null; // Change the type to string | null
 
-  constructor(private timersService: TimersService, private datePipe: DatePipe, private router:Router) {
+  constructor(private timersService: TimersService, private datePipe: DatePipe, private router:Router, private fb: FormBuilder) {
     if (this.timersService.selectedTimerId == -1)
     {
       this.router.navigate(['timers/dashboard']);
     }
+    this.form = this.fb.group({
+      'title': [''],
+      'description': [''],
+      'startDate': ['']
+    });
     if (this.timersService.selectedTimerId >= 0 && this.timersService.selectedTimerId < this.timersService.timerList.length) {
       this.timer = this.timersService.timerList[this.timersService.selectedTimerId];
     }
@@ -36,5 +43,8 @@ export class TimerDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.timer.startDate);
+  }
+  onSaveChanges() {
+    
   }
 }

@@ -4,7 +4,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { TimersRoutingModule } from './timers-routing.module';
 import { TimersComponent } from './timers.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { TimersService } from './timers.service';
 import { TimerDetailsComponent } from './timer-details/timer-details.component';
@@ -19,7 +19,8 @@ import { TimerDetailsComponent } from './timer-details/timer-details.component';
   imports: [
     CommonModule,
     TimersRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [TimersService, AuthService,DatePipe]
 })
