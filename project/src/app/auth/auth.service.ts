@@ -51,26 +51,25 @@ export class AuthService {
         return error.message || 'An error occurred during signup.';
       }
     } */
-login(email: string, passwd: string) {
-  return signInWithEmailAndPassword(this.auth,email,passwd)
-  .then( () => {
-    return this.auth.currentUser?.getIdToken()
-    .then(
-      (token: string) => {
-        this.token = token;
-        localStorage.setItem('token',token);
-        
+    login(email: string, passwd: string){
+      return signInWithEmailAndPassword(this.auth, email, passwd)
+      .then ( () => {
+        this.auth.currentUser?.getIdToken()
+        .then(
+          (token: string) => {
+            this.token = token;
+            localStorage.setItem('token',token);
+          }  
+        );
         return true;
-      }
-    );
-  })
-  .catch(
-    error => {
-      console.log(error);
-      return false;      
+      })
+      .catch(
+        error => {
+          console.log(error);
+          return false;
+          }
+      );
     }
-  );
-}
 logout():void {
   this.auth.signOut();
   this.token = null;

@@ -11,21 +11,29 @@ import { environment } from 'src/environment/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { AuthGuard } from './auth.guard';
 import { CanComponentDeactivateGuard } from './can-component-deactivate.guard';
+import { AuthService } from './auth/auth.service';
+import { SignupComponent } from './auth/signup/signup.component';
+import { LoginComponent } from './auth/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth())
    
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
