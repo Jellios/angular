@@ -10,6 +10,7 @@ import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import { environment } from 'src/environment/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { AuthGuard } from './auth.guard';
+import { CanComponentDeactivateGuard } from './can-component-deactivate.guard';
 
 @NgModule({
   declarations: [

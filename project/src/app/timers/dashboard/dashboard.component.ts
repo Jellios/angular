@@ -3,12 +3,13 @@ import { TimersService } from '../timers.service';
 import { Timer } from '../timer';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit  {
   timerList: Timer[] = [];
   dateList: Date[] = [];
 

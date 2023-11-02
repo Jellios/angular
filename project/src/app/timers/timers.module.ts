@@ -9,6 +9,7 @@ import { AuthService } from '../auth/auth.service';
 import { TimersService } from './timers.service';
 import { TimerDetailsComponent } from './timer-details/timer-details.component';
 import { NewTimerComponent } from './new-timer/new-timer.component';
+import { CanComponentDeactivateGuard } from '../can-component-deactivate.guard';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { NewTimerComponent } from './new-timer/new-timer.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [TimersService, AuthService,DatePipe]
+  providers: [TimersService, AuthService,DatePipe, CanComponentDeactivateGuard]
 })
 export class TimersModule { 
   constructor () {

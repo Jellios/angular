@@ -6,12 +6,16 @@ import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Timestamp } from '@angular/fire/firestore';
 
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-timer-details',
   templateUrl: './timer-details.component.html',
   styleUrls: ['./timer-details.component.css']
 })
 export class TimerDetailsComponent implements OnInit {
+ 
+  saved: boolean = false;
 
   timer: Timer = {
     id: '',
@@ -44,7 +48,7 @@ export class TimerDetailsComponent implements OnInit {
       'description': [this.timer.description],
       'startDate': [this.tmpDate]
     });
-    
+    this.saved = false;
   }
 get title(): FormArray {
   return this.form.controls['title'] as FormArray;
@@ -57,7 +61,9 @@ get startDate(): FormArray {
 }
   ngOnInit(): void {
    // console.log(this.timer.startDate);
+   this.saved = false;
   }
+
   onSaveChanges() {
    
 
@@ -79,3 +85,4 @@ get startDate(): FormArray {
     this.router.navigate(['timers/dashboard']);
   }
 }
+

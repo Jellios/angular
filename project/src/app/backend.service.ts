@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collectionData, collection, CollectionReference, Timestamp, addDoc, doc, setDoc, collectionGroup, query, where, DocumentReference, updateDoc, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, CollectionReference, Timestamp, addDoc, doc, setDoc, collectionGroup, query, where, DocumentReference, updateDoc, deleteDoc, orderBy } from '@angular/fire/firestore';
 import { Observable, from } from 'rxjs';
 import { Timer } from './timers/timer';
 import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
+import { UserInfo } from './user-info';
+
 
 
 @Injectable({
@@ -19,7 +21,7 @@ export class BackendService {
       //this.router.navigate(['auth/login']);
       return new Observable<Timer[]>(); // Return an empty observable or handle this case accordingly
     }
-  
+   
     const userID = user.uid;
     return collectionData<Timer>(
       query<Timer>(
@@ -49,5 +51,6 @@ export class BackendService {
     const timerRef = doc(this.db, 'timers/'+id) as DocumentReference<Timer>;
     return from(deleteDoc(timerRef));
   }
-  
+
+
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collectionData, collection,CollectionReference, doc, setDoc, addDoc} from '@angular/fire/firestore';
-import {Observable, from} from 'rxjs';
+import { Firestore, collectionData, collection,CollectionReference, doc, setDoc, addDoc, query, where} from '@angular/fire/firestore';
+import {Observable, map,of,from} from 'rxjs';
 import { Router } from '@angular/router';
 import {Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from '@angular/fire/auth'
 import {  AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
-
+import { UserInfo } from '../user-info';
 
 
 @Injectable({
@@ -82,7 +82,33 @@ isLoggedIn(): boolean {
   return this.token != null;
 }
 
+isAdmin(): Observable<boolean> {
+  const tmpUser = this.getCurrentUser();
+  if (tmpUser) {
+    const id = tmpUser.uid;
+    return this.getUserFields(id).pipe(
+      map((userInfos: UserInfo[]) => {
+        if (userInfos.length > 0) {
+          return userInfos[0].isAdmin || false;
+        } else {
+          return false;
+        }
+      })
+    );
+  } else {
+    return of(false);
+  }
+}
 
+  getUserFields(id:string): Observable<UserInfo[]>{
+    return collectionData<UserInfo>(
+      query<UserInfo>(
+        collection(this.db, 'users') as CollectionReference<UserInfo>,
+        where("userID", "==" ,id)
+      ),
+      {idField: 'id'}
+    );
+  }
 paswordsMatch(fgp: FormGroup): Promise<any> |Observable<any> {
   const answer = new  Promise<any>((resolve,reject) => {
     console.log(fgp);

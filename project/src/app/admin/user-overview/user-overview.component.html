@@ -1,0 +1,20 @@
+<div class="container">
+    <table class=" table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Is Admin?</th>
+                <th>Toggle Admin</th>
+                <th>View Timers</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let userinfo of userInfoList; let i = index">
+                <td>{{userinfo.email}}</td>
+                <td>{{userinfo.isAdmin}}</td>
+                <td><button class="btn btn-primary">Toggle admin</button></td>
+                <td><button class="btn btn-primary">View timers</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

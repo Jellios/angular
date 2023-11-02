@@ -4,6 +4,7 @@ import { TimersComponent } from './timers.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TimerDetailsComponent } from './timer-details/timer-details.component';
 import { NewTimerComponent } from './new-timer/new-timer.component';
+import { CanComponentDeactivateGuard } from '../can-component-deactivate.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
   },
   {
     path: 'timerDetails',
-    component: TimerDetailsComponent
+    component: TimerDetailsComponent,
+    canDeactivate: [CanComponentDeactivateGuard]
   },
   {
     path: 'newTimer',

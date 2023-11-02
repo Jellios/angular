@@ -18,6 +18,7 @@ export class TimersService {
     return this.backendservice.getAllTimers().pipe(
       tap((timers) => {
         this.timerList = timers;
+        console.log(timers);
       })
     );
   }
