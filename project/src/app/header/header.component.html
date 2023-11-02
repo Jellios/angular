@@ -1,9 +1,9 @@
 
   
     <nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
-      <div class="container-fluid"></div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <div class="container-fluid">
+    
+      <ul class="navbar-nav">
        
        
 
@@ -12,11 +12,17 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="timers/dashboard">Dashboard</a>
             </li>
+        
           <li class="nav-item">
             <a class="nav-link" (click)="onLogout()">logout</a>
         </li>
+        
         </ng-template>
-
+        <ng-template [ngIf]="(authService.isAdmin() && authService.isLoggedIn())">
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="admin/overview">Admin</a>
+          </li>
+        </ng-template>
         <ng-template [ngIf]="!authService.isLoggedIn()">
           <li class="nav-item">
             <a class="nav-link" routerLink="auth/login">login</a>
@@ -24,13 +30,13 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="auth/register">Register</a>
       </li>
+     
       </ng-template>
 
 
 
 
 
-      </ul>
-    </div>
-    
+    </ul>
+  </div>
 </nav>
