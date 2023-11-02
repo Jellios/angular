@@ -15,8 +15,9 @@ const routes: Routes = [
       loadChildren: ()=> import('./timers/timers.module').then((m)=> m.TimersModule),
       canActivate: [AuthGuard],
     },
-    { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-  canActivate: [CanActivateAdminGuard] },
+    { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+ // canActivate: [CanActivateAdminGuard]
+},
   
 ]
 @NgModule({

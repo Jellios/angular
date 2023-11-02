@@ -18,11 +18,11 @@
         </li>
         
         </ng-template>
-        <ng-template [ngIf]="(authService.isAdmin() && authService.isLoggedIn())">
+      
           <li class="nav-item" >
             <a class="nav-link" routerLink="admin/overview">Admin</a>
           </li>
-        </ng-template>
+   
         <ng-template [ngIf]="!authService.isLoggedIn()">
           <li class="nav-item">
             <a class="nav-link" routerLink="auth/login">login</a>

@@ -25,7 +25,14 @@ export class AdminService {
       {idField: 'id'}
     );
   }
-
-
-  
+  toggleAdmin(x: UserInfo) {
+    if (x.isAdmin){
+      x.isAdmin = false;
+    }
+    else{
+      x.isAdmin = true;
+    }
+    const userRef = doc(this.db, 'users/'+x.id) as DocumentReference<UserInfo>;
+    return from(updateDoc(userRef,x));
+  }
 }

@@ -1,19 +1,23 @@
-<div class="container">
+<div class="container justify-content-center">
     <table class=" table-striped">
         <thead>
             <tr>
                 <th>Email</th>
                 <th>Is Admin?</th>
                 <th>Toggle Admin</th>
-                <th>View Timers</th>
+                
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let userinfo of userInfoList; let i = index">
-                <td>{{userinfo.email}}</td>
-                <td>{{userinfo.isAdmin}}</td>
-                <td><button class="btn btn-primary">Toggle admin</button></td>
-                <td><button class="btn btn-primary">View timers</button></td>
+                <!--<td> <a href="">{{userinfo.email}}</td> -->
+                    <td>
+                        <a href="#" class="link-info">{{userinfo.email}}</a>
+                    </td>
+                <td [ngStyle]="{'background-color': userinfo.isAdmin === true ? 'green' : 'red'}">{{userinfo.isAdmin}}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="toggleAdmin(i)">Toggle admin</button>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -17,4 +17,7 @@ export class UserOverviewComponent implements OnInit {
       this.userInfoList = usersInfo;
     })
   }
+  toggleAdmin(x:number) {
+    this.adminservice.toggleAdmin(this.userInfoList[x]);
+  }
 }
