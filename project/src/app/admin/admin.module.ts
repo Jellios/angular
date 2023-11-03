@@ -7,13 +7,17 @@ import { UserOverviewComponent } from './user-overview/user-overview.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { TimersService } from '../timers/timers.service';
 import { AuthService } from '../auth/auth.service';
+import { TableDirective } from '../table.directive';
+import { IsAdminPipe } from './is-admin.pipe';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     UserOverviewComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    TableDirective,
+    IsAdminPipe
   ],
   imports: [
     CommonModule,

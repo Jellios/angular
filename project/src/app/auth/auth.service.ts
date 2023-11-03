@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collectionData, collection,CollectionReference, doc, setDoc, addDoc, query, where} from '@angular/fire/firestore';
-import {Observable, map,of,from} from 'rxjs';
+import {Observable, map,of,from, Subject} from 'rxjs';
 import { Router } from '@angular/router';
 import {Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from '@angular/fire/auth'
 import {  AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { UserInfo } from '../user-info';
+import { BackendService } from '../backend.service';
 
 
 @Injectable({
@@ -21,7 +22,14 @@ export class AuthService {
     console.log("logged in: "+ localStorage.getItem('token')); 
   }
 
+  userInfo: UserInfo = {
+    email: '',
+    id: '',
+    isAdmin: false
+  }
   token: string| null = null;
+
+isAdmin = new Subject<boolean>();
 
  signup(email: string, passwd: string): Promise<string> {
     return createUserWithEmailAndPassword(this.auth, email, passwd)
@@ -51,25 +59,33 @@ export class AuthService {
         return error.message || 'An error occurred during signup.';
       }
     } */
-    login(email: string, passwd: string){
+    login(email: string, passwd: string) {
       return signInWithEmailAndPassword(this.auth, email, passwd)
-      .then ( () => {
-        this.auth.currentUser?.getIdToken()
-        .then(
-          (token: string) => {
-            this.token = token;
-            localStorage.setItem('token',token);
-          }  
-        );
-        return true;
-      })
-      .catch(
-        error => {
+        .then(() => {
+          this.auth.currentUser?.getIdToken()
+            .then((token: string) => {
+              this.token = token;
+              localStorage.setItem('token', token);
+              this.userInfo.id = this.auth.currentUser?.uid || '';
+              console.log('Logged in user ID:', this.userInfo.id);
+              if (this.auth.currentUser != null) {
+                this.getUserFields(this.auth.currentUser.uid).subscribe((tmpUserInfo: UserInfo[]) => {
+                  if (tmpUserInfo && tmpUserInfo.length > 0) {
+                    this.userInfo.email = tmpUserInfo[0].email;
+                    this.userInfo.isAdmin = tmpUserInfo[0].isAdmin;
+                    console.log('User Info:', this.userInfo);
+                  }
+                });
+              }
+            });
+          return true;
+        })
+        .catch(error => {
           console.log(error);
           return false;
-          }
-      );
+        });
     }
+    
 logout():void {
   this.auth.signOut();
   this.token = null;
@@ -81,25 +97,9 @@ isLoggedIn(): boolean {
   return this.token != null;
 }
 
-isAdmin(): Observable<boolean> {
-  const tmpUser = this.getCurrentUser();
-  if (tmpUser) {
-    const id = tmpUser.uid;
-    return this.getUserFields(id).pipe(
-      map((userInfos: UserInfo[]) => {
-        if (userInfos.length > 0) {
-          return userInfos[0].isAdmin || false;
-        } else {
-          return false;
-        }
-      })
-    );
-  } else {
-    return of(false);
-  }
-}
 
-  getUserFields(id:string): Observable<UserInfo[]>{
+
+  getUserFields(id:string|null): Observable<UserInfo[]>{
     return collectionData<UserInfo>(
       query<UserInfo>(
         collection(this.db, 'users') as CollectionReference<UserInfo>,
@@ -147,7 +147,9 @@ return from(setDoc(ref, {'userID':customID, 'email':email, 'isAdmin': false}));
 
 }
 
-
+checkAdmin(x: boolean) {
+  this.isAdmin.next(x);
+}
 getCurrentUser() {
   
   if (this.auth.currentUser) {

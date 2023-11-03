@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, LoadChildren } from '@angular/router';
 import { AuthModule, SignInMethod } from '@angular/fire/auth';
 import { AuthGuard } from './auth.guard';
-import { CanActivateAdminGuard } from './can-activate-admin.guard';
+
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 

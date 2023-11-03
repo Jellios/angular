@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collectionData, collection, CollectionReference, Timestamp, addDoc, doc, setDoc, collectionGroup, query, where, DocumentReference, updateDoc, deleteDoc, orderBy } from '@angular/fire/firestore';
-import { Observable, from } from 'rxjs';
+import { Observable, from,map } from 'rxjs';
 import { Timer } from './timers/timer';
 import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
 import { UserInfo } from './user-info';
+import { idToken, user } from 'rxfire/auth';
 
 
 
@@ -31,6 +32,8 @@ export class BackendService {
       {idField: 'id'}
     );
   }
+  
+  
   updateTimer(title: string, description: string, startDate: Timestamp, id: string){
     const timerRef = doc(this.db,'timers/'+id) as DocumentReference<Timer>;
     return from(updateDoc(timerRef, {'title': title, 'description': description, 'startDate': startDate}));
@@ -52,5 +55,21 @@ export class BackendService {
     return from(deleteDoc(timerRef));
   }
 
-
+  getCurrentUserInfo(): Observable<UserInfo[]> {
+   
+    const usr = this._authService.getCurrentUser();
+    let id:String = '';
+    if (usr != null)
+    {
+      id = usr.uid;
+      console.log("test");
+    }
+    return collectionData<UserInfo>(
+      query<UserInfo>(
+        collection(this.db, 'users') as CollectionReference<UserInfo>,
+        where('userID', '==', id)
+      ),
+      {idField: 'id'}
+    );
+  }
 }

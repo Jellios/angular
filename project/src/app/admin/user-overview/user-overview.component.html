@@ -9,12 +9,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let userinfo of userInfoList; let i = index">
+            <tr appTable  *ngFor="let userinfo of userInfoList; let i = index">
                 <!--<td> <a href="">{{userinfo.email}}</td> -->
-                    <td>
+                    <td >
                         <a href="#" class="link-info">{{userinfo.email}}</a>
                     </td>
-                <td [ngStyle]="{'background-color': userinfo.isAdmin === true ? 'green' : 'red'}">{{userinfo.isAdmin}}</td>
+                <td [ngClass]="userinfo | isAdmin">{{userinfo.isAdmin}}</td>
                 <td>
                     <button class="btn btn-primary" (click)="toggleAdmin(i)">Toggle admin</button>
                 </td>

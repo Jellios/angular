@@ -15,6 +15,10 @@ export class TimersService {
   }
 
   getAllTimers(): Observable<Timer[]> {
+
+
+    
+
     return this.backendservice.getAllTimers().pipe(
       tap((timers) => {
         this.timerList = timers;
