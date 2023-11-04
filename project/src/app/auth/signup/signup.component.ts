@@ -28,11 +28,13 @@ ngOnInit(): void {
     }],
   }); */
   this.form = this.fb.group({
-    'email': [null],
+    'email': ["", {
+      validators: [Validators.required, this.isEmpty]
+    }],
     'passwordData': this.fb.group({
       'passwd': [null],
       'passwd2': ["", {
-        validators: [Validators.required],
+        validators: [Validators.required, this.isEmpty],
         updateOn: 'change'
     }],
     }, {
@@ -42,6 +44,9 @@ ngOnInit(): void {
 
   
 } 
+get email(): FormArray {
+  return this.form.controls['email'] as FormArray;
+}
 get passwd(): FormArray {
   return this.form.controls['passwd'] as FormArray;
 }
@@ -64,6 +69,10 @@ onSignup(): void {
       alert(res);
     }
   })
+}
+isEmpty(control: FormControl) {
+  const value: string = control.value || '';
+  return value.length == 0;
 }
 
 }

@@ -15,6 +15,7 @@ import { AuthService } from './auth/auth.service';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminGuard } from './admin.guard';
 
 
 @NgModule({
@@ -32,10 +33,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
    
   ],
-  providers: [AuthGuard,AuthService],
+  providers: [AuthGuard,AuthService,Storage],
   bootstrap: [AppComponent]
 })
 export class AppModule {

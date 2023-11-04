@@ -4,6 +4,7 @@ import { Observable, from } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { UserInfo } from '../user-info';
+import {getDownloadURL, ref, Storage, uploadBytesResumable} from '@angular/fire/storage'
 @Injectable({
   providedIn: 'root'
 })
@@ -35,4 +36,12 @@ export class AdminService {
     const userRef = doc(this.db, 'users/'+x.id) as DocumentReference<UserInfo>;
     return from(updateDoc(userRef,x));
   }
+/*
+  async uploadImg(path:string, file:File): Promise<string> {
+    const storageRef = ref(this.storage, path);
+    const task = uploadBytesResumable(storageRef, file);
+    await task;
+    const url = await getDownloadURL(storageRef);
+    return url;
+  } */
 }

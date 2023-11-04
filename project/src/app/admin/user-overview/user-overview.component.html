@@ -21,4 +21,19 @@
             </tr>
         </tbody>
     </table>
+    <hr>
+    <hr>
+    
+   <!-- <form #fileUploadForm="ngForm" (ngSubmit)="onSubmit(fileUploadForm)">
+        <div class="form-group">
+          <label for="file">Choose File</label>
+          <input type="file" id="file" name="file" ngModel #file="ngModel" (change)="onFileChange($event)" required ImageValidator>
+          <div *ngIf="file.errors?.['notImage']" class="alert alert-danger">
+            File is not an image.
+          </div>
+        </div>
+        <button type="submit" [disabled]="!fileUploadForm.valid">Upload</button>
+      </form>
+    -->
+      
 </div>

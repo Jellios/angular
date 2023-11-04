@@ -9,22 +9,18 @@ import { AuthService } from '../auth/auth.service';
 export class HeaderComponent implements OnInit {
 
   isAdmin: boolean = false;
-  constructor(private _authService : AuthService){}
+  constructor(public _authService: AuthService) {}
+
+  ngOnInit(): void {
+    this._authService.isAdmin.subscribe((isAdmin: boolean) => {
+      // Handle the value emitted by the Subject
+      this.isAdmin = isAdmin;
+      console.log("djfjeiejiejr" + this.isAdmin);
+    });
+  }
   
 
-ngOnInit(): void {
- this.authService.isAdmin.subscribe({
-  next:(x: boolean) => {
-    console.log('in header is x: ' + x);
-    this.isAdmin = x;
-  }
- })
-}
-
-  onLogout(): void{
+  onLogout(): void {
     this._authService.logout();
-  }
-  get authService(){
-    return this._authService;
   }
 }
