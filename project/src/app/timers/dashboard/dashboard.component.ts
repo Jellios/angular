@@ -18,6 +18,10 @@ export class DashboardComponent implements OnInit  {
   }
 
   ngOnInit(): void {
+
+    console.log("ikkeinite");
+    this.dateList = [];
+    this.timerList = [];
     this.timerService.getAllTimers().subscribe((timers: Timer[]) => {
       this.timerList = timers;
       if (this.timerList.length > 0) {
@@ -45,8 +49,12 @@ export class DashboardComponent implements OnInit  {
    
     this.timerService.getAllTimers().subscribe((timers: Timer[]) => {
       this.timerList = timers;
-      if (this.timerList.length > 0) {
-        for (let i = 0; i < this.timerList.length; i++) {
+      console.log(this.timerList);
+      
+      if (this.timerList.length >= 0) {
+        console.log(this.timerList);
+        for (let i = 1; i <= this.timerList.length; i++) {
+          console.log("lengte: "+ this.timerList.length);
           const timer = this.timerList[i];
           if (timer && timer.startDate) {
             const tmpDate = new Date(timer.startDate.seconds * 1000);
@@ -54,6 +62,7 @@ export class DashboardComponent implements OnInit  {
           }
         }
       }
+      console.log(this.dateList);
     });
 }
   editTimer(x:number) {

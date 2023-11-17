@@ -10,8 +10,8 @@
         </thead>
         <tbody>
             <tr appTable  *ngFor="let userinfo of userInfoList; let i = index">
-                <!--<td> <a href="">{{userinfo.email}}</td> -->
-                    <td >
+           
+                    <td>
                         <a href="#" class="link-info">{{userinfo.email}}</a>
                     </td>
                 <td [ngClass]="userinfo | isAdmin">{{userinfo.isAdmin}}</td>

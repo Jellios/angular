@@ -19,8 +19,8 @@ export class BackendService {
   getAllTimers(): Observable<Timer[]> {
     const user = this._authService.getCurrentUser();
     if (!user || !user.uid) {
-      //this.router.navigate(['auth/login']);
-      return new Observable<Timer[]>(); // Return an empty observable or handle this case accordingly
+    
+      return new Observable<Timer[]>(); 
     }
    
     const userID = user.uid;
@@ -41,13 +41,12 @@ export class BackendService {
   addTimer(timer: Timer) {
     const user = this._authService.getCurrentUser();
     if (user?.uid) {
-      timer.userID = user.uid; // Set the user ID as the timer's ID
+      timer.userID = user.uid; 
       const timersCollection = collection(this.db, 'timers');
       return from(addDoc(timersCollection, timer));
     } else {
-      // Handle the case where the user ID is not available in localStorage
-      // You can return an error or take an appropriate action.
-      return /* Return an observable with an error or a specific value */;
+     
+      return ;
     }
   }
   deleteTimer(id:string) {

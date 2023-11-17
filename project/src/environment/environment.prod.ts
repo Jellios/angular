@@ -2,8 +2,8 @@
 
 // Your web app's Firebase configuration
 export const environment = {
+  production: true,
   firebase: {
-  
     apiKey: "AIzaSyAah4WePOCum1k3iP8RDbp6K52CKCGAabY",
     authDomain: "webdevproject-cac05.firebaseapp.com",
     projectId: "webdevproject-cac05",

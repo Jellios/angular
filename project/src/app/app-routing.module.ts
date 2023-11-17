@@ -8,7 +8,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AdminGuard } from './admin.guard';
 
 const routes: Routes = [
-  // Other routes, if any
+  
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/register', component: SignupComponent },
   {
@@ -21,8 +21,8 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule)
     
   },
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' }, // Redirect empty route to login
-  { path: '**', redirectTo: 'auth/login' }, // Redirect invalid route to login
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' }, 
+  { path: '**', redirectTo: 'auth/login' }, 
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

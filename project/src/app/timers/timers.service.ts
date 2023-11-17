@@ -33,7 +33,7 @@ export class TimersService {
   }
   calculateTimeAgo(startDate: Date): string {
     
-    const currentDate = new Date(); // Use your current date and time here
+    const currentDate = new Date(); 
     const timeDifference = currentDate.getTime() - startDate.getTime();
     const seconds = Math.floor(timeDifference / 1000);
     const minutes = Math.floor(seconds / 60);
@@ -60,9 +60,9 @@ export class TimersService {
   }
   deleteTimer(x: number) {
     if (x >= 0 && x < this.timerList.length) {
-        const timerId = this.timerList[x].id; // Assuming you have an 'id' property in your Timer object
+        const timerId = this.timerList[x].id; 
         this.backendservice.deleteTimer(timerId).subscribe(() => {
-            // Remove the deleted timer from your local timerList
+           
             this.timerList.splice(x, 1);
         });
     }

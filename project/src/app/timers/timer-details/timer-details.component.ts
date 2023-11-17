@@ -22,10 +22,10 @@ export class TimerDetailsComponent implements OnInit {
     userID: '',
     title: '',
     description: '',
-    startDate: null as any, // Set startDate to null
+    startDate: null as any,
   };
   form !: FormGroup;
-  tmpDate: string | null = null; // Change the type to string | null
+  tmpDate: string | null = null; 
 
   constructor(private timersService: TimersService, private datePipe: DatePipe, private router:Router, private fb: FormBuilder) {
     if (this.timersService.selectedTimerId == -1)
@@ -38,9 +38,9 @@ export class TimerDetailsComponent implements OnInit {
       this.timer = this.timersService.timerList[this.timersService.selectedTimerId];
     }
     if (this.timer.startDate) {
-      // Convert Firebase Timestamp to JavaScript Date using toDate()
+    
       const startDate = this.timer.startDate.toDate();
-      // Format the Date as a string using DatePipe
+   
       this.tmpDate = this.datePipe.transform(startDate, 'yyyy-MM-dd');
     }
     this.form = this.fb.group({
@@ -60,7 +60,7 @@ get startDate(): FormArray {
   return this.form.controls['startDate'] as FormArray;
 }
   ngOnInit(): void {
-   // console.log(this.timer.startDate);
+  
    this.saved = false;
   }
 

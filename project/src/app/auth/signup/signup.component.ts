@@ -15,18 +15,9 @@ constructor (private authService: AuthService,private router: Router, private fb
 
 
 form!: FormGroup;
-//emailTaken: boolean = false;
+
 ngOnInit(): void {
- /* 
-  this.form = this.fb.group({
-    'email': [null],
-    'passwd': [null],
-    'passwd2': ["", {
-      validators: [Validators.required],
-      //asyncValidators: [this.authService.paswordsMatch(this.passwd, this.passwd2)],
-      updateOn: 'change'
-    }],
-  }); */
+
   this.form = this.fb.group({
     'email': ["", {
       validators: [Validators.required, this.isEmpty]
@@ -58,7 +49,7 @@ get passwordData (): FormGroup {
 }
 onSignup(): void {
   const email = this.form.value['email'];
-  //const password = this.form.value['passwd'];
+ 
   const password = this.passwordData.value['passwd'];
   this.authService.signup(email,password)
   .then((res)=> {
