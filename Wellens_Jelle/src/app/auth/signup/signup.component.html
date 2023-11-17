@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-8">
+        <form [formGroup]="form" (ngSubmit)="onSignup()">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" formControlName="email" class="form-control">
+            </div>
+        
+            <div formGroupName="passwordData">
+                <div class="form-group">
+                    <label for="passwd">Password</label>
+                    <input type="password" name="passwd" id="passwd" formControlName="passwd" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="passwd2">Repeat password</label>
+                    <input type="password" name="passwd2" id="passwd2" formControlName="passwd2" class="form-control">
+                </div>
+                <div class="alert alert-danger" *ngIf="!passwordData.valid && passwordData.touched">
+                   <span *ngIf="passwordData.errors &&  passwordData.errors['passwordsNotMatch'] == true">
+                    Pawwords do not match!
+                   </span>
+                   <span *ngIf="passwordData.errors &&  passwordData.errors['passwordNotStrong'] == true">
+                    Password not strong! pasword should: <ul>
+                        <li>Be atleast 8 charachters long</li>
+                        <li>Contain atleast 1 Captial letter</li>
+                        <li>Contain atleast 1 lower case letter</li>
+                        <li>Contain atleast 1 number</li>
+                        <li>Contain atleast 1 special charachter (!,&,@,etc...)</li>
+                    </ul>
+                   </span>
+                </div>
+            </div>
+           
+            <button class="btn btn-primary" type="submit">Sign Up</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-sm bg-secondary navbarDark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <ng-container *ngIf="_authService.isLoggedIn()">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="timers/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onLogout()">Logout</a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="_authService.isAdmin | async">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="admin/overview">Admin</a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="!_authService.isLoggedIn()">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="auth/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="auth/register">Register</a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</nav>

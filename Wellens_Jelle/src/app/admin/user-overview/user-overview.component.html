@@ -1,0 +1,39 @@
+<div class="container justify-content-center">
+    <table class=" table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Is Admin?</th>
+                <th>Toggle Admin</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr appTable  *ngFor="let userinfo of userInfoList; let i = index">
+           
+                    <td>
+                        <a href="#" class="link-info">{{userinfo.email}}</a>
+                    </td>
+                <td [ngClass]="userinfo | isAdmin">{{userinfo.isAdmin}}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="toggleAdmin(i)">Toggle admin</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <hr>
+    
+   <!-- <form #fileUploadForm="ngForm" (ngSubmit)="onSubmit(fileUploadForm)">
+        <div class="form-group">
+          <label for="file">Choose File</label>
+          <input type="file" id="file" name="file" ngModel #file="ngModel" (change)="onFileChange($event)" required ImageValidator>
+          <div *ngIf="file.errors?.['notImage']" class="alert alert-danger">
+            File is not an image.
+          </div>
+        </div>
+        <button type="submit" [disabled]="!fileUploadForm.valid">Upload</button>
+      </form>
+    -->
+      
+</div>

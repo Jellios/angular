@@ -1,0 +1,21 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6" *ngFor="let timer of timerList; let i = index">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">{{timer['title']}}</h5>
+                    <button class="btn btn-danger" (click)="onDeleteTimer(i)">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{timer['description']}}</p>
+                    <p class="card-text">{{this.dateList[i]}}</p>
+                    <p class="card-text">{{this.calculateTime(i)}}</p>
+                    <button class="btn btn-secondary" (click)="editTimer(i)">Edit</button>
+                </div>
+            </div>
+        </div>
+        <a class="w-25" href="/timers/newTimer"><i class="bi bi-plus-square-fill" style="font-size: 140px;"></i></a>
+    </div>
+</div>
